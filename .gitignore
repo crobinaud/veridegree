@@ -1,0 +1,45 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Next.js
+.next/
+out/
+build/
+
+# Blockchain / Besu
+# Ignore heavy blockchain data and runtime files
+**/data/database/
+**/data/caches/
+**/data/besu.networks
+**/data/besu.ports
+**/data/DATABASE_METADATA.json
+**/data/VERSION_METADATA.json
+
+# Keep node identity (key and key.pub) for dev/lab testability
+# Un-comment the lines below if you want to keep keys private
+# **/data/key
+# **/data/key.pub
+
+# Foundry (Smart Contracts)
+contracts/out/
+contracts/cache/
+contracts/broadcast/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
