@@ -33,7 +33,7 @@ services:
     command:
       - --data-path=/data
       - --genesis-file=/genesis.json
-      - --bootnodes=enode://07edfc601e7e782d4d2e5cf7a7c3cf2962e266ceebed61ebfd11796f059d60312279b44c6d8b4bf660490e014ab1403ff8d50d521f0f3575096f43d271b358d9@172.16.239.11:30303
+      - --bootnodes=enode://c69a99de7ea8ca0ed47b96a623ceb26126fc8b098ef6026c7639a9d4041c907f26c0d584e9f91dba438f5fb581b28a36c166915d5d27f30d1cdbee6c3c935d38@172.16.239.11:30303
       - --network-id=1337
       - --rpc-http-enabled
       - --rpc-http-api=ETH,NET,QBFT
@@ -54,7 +54,7 @@ services:
     command:
       - --data-path=/data
       - --genesis-file=/genesis.json
-      - --bootnodes=enode://07edfc601e7e782d4d2e5cf7a7c3cf2962e266ceebed61ebfd11796f059d60312279b44c6d8b4bf660490e014ab1403ff8d4d50d521f0f3575096f43d271b358d9@172.16.239.11:30303
+      - --bootnodes=enode://c69a99de7ea8ca0ed47b96a623ceb26126fc8b098ef6026c7639a9d4041c907f26c0d584e9f91dba438f5fb581b28a36c166915d5d27f30d1cdbee6c3c935d38@172.16.239.11:30303
       - --network-id=1337
       - --rpc-http-enabled
       - --rpc-http-api=ETH,NET,QBFT
@@ -75,7 +75,7 @@ services:
     command:
       - --data-path=/data
       - --genesis-file=/genesis.json
-      - --bootnodes=enode://07edfc601e7e782d4d2e5cf7a7c3cf2962e266ceebed61ebfd11796f059d60312279b44c6d8b4bf660490e014ab1403ff8d50d521f0f3575096f43d271b358d9@172.16.239.11:30303
+      - --bootnodes=enode://c69a99de7ea8ca0ed47b96a623ceb26126fc8b098ef6026c7639a9d4041c907f26c0d584e9f91dba438f5fb581b28a36c166915d5d27f30d1cdbee6c3c935d38@172.16.239.11:30303
       - --network-id=1337
       - --rpc-http-enabled
       - --rpc-http-api=ETH,NET,QBFT
