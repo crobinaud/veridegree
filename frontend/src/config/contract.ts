@@ -2,7 +2,7 @@ import { parseAbi } from 'viem';
 
 // On utilise l'adresse fraichement déployée 0xe7f1...
 export const CONTRACT_ADDRESS = (process.env.NEXT_PUBLIC_CONTRACT_ADDRESS ||
-  '0x9B8397f1B0FEcD3a1a40CdD5E8221Fa461898517') as `0x${string}`;
+  '0x42699A7612A82f1d9C36148af9C77354759b210b') as `0x${string}`;
 
 // keccak256("MINTER_ROLE")
 export const MINTER_ROLE_HASH =
