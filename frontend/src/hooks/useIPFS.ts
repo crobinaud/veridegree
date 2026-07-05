@@ -17,7 +17,7 @@ export function useIPFS() {
       if (!res.ok) throw new Error('IPFS storage failed');
       const data = await res.json();
       return data.Hash;
-    } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
+    } catch {
       const msg = 'Could not reach IPFS API (CORS issue or daemon offline).';
       setError(msg);
       throw new Error(msg);

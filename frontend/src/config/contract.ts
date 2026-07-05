@@ -1,4 +1,3 @@
-import { parseAbi } from 'viem';
 
 // On utilise l'adresse fraichement déployée 0xe7f1...
 export const CONTRACT_ADDRESS = (process.env.NEXT_PUBLIC_CONTRACT_ADDRESS ||

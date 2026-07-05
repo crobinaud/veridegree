@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
+import { useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { CONTRACT_ADDRESS, VERIDEGREE_ABI } from '@/config/contract';
 import { useIPFS } from '@/hooks/useIPFS';
 
@@ -55,13 +55,14 @@ export function AdminPortal() {
         args: [studentAddress.trim() as `0x${string}`, `ipfs://${metaCid}`],
       });
       setStatusText('Confirming Mint Transaction...');
-    } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
+    } catch (err) {
       console.error(err);
-      let errorMsg = err.message || 'Minting process failed.';
+      const errorObj = err as { message?: string; shortMessage?: string };
+      let errorMsg = errorObj.message || 'Minting process failed.';
 
       if (errorMsg.includes('AccessControl') || errorMsg.includes('missing role')) {
         errorMsg = 'Unauthorized: You do not have the MINTER_ROLE (Connect with Admin account).';
-      } else if (err.shortMessage?.includes('User rejected') || errorMsg.includes('User denied')) {
+      } else if (errorObj.shortMessage?.includes('User rejected') || errorMsg.includes('User denied')) {
         errorMsg = 'Transaction rejected by user.';
       }
 
