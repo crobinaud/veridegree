@@ -55,7 +55,7 @@ export function AdminPortal() {
         args: [studentAddress.trim() as `0x${string}`, `ipfs://${metaCid}`],
       });
       setStatusText('Confirming Mint Transaction...');
-    } catch (err: any) {
+    } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
       console.error(err);
       let errorMsg = err.message || 'Minting process failed.';
 
