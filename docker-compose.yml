@@ -1,0 +1,130 @@
+
+
+x-besu-def: &besu-def
+  image: hyperledger/besu:latest
+  networks:
+    - veridegree-network
+
+services:
+  ipfs:
+    image: ipfs/kubo:latest
+    container_name: ipfs-node
+    ports:
+      - "4001:4001"
+      - "4001:4001/udp"
+      - "5001:5001"
+      - "8080:8080"
+    volumes:
+      - ipfs_data:/data/ipfs
+      - ./ipfs-init.sh:/container-init.d/01-cors.sh
+    environment:
+      - IPFS_PROFILE=server
+    networks:
+      - veridegree-network
+
+  node1:
+    <<: *besu-def
+    container_name: besu-node1
+    command:
+      - --data-path=/data
+      - --genesis-file=/genesis.json
+      - --network-id=1337
+      - --rpc-http-enabled
+      - --rpc-http-api=ETH,NET,QBFT
+      - --host-allowlist=*
+      - --rpc-http-cors-origins=all
+      - --profile=ENTERPRISE
+    volumes:
+      - ./besu-qbft/genesis.json:/genesis.json
+      - ./besu-qbft/node1/data:/data
+    ports:
+      - '8545:8545'
+    networks:
+      veridegree-network:
+        ipv4_address: 172.16.239.11
+
+  node2:
+    <<: *besu-def
+    container_name: besu-node2
+    command:
+      - --data-path=/data
+      - --genesis-file=/genesis.json
+      - --bootnodes=enode://c69a99de7ea8ca0ed47b96a623ceb26126fc8b098ef6026c7639a9d4041c907f26c0d584e9f91dba438f5fb581b28a36c166915d5d27f30d1cdbee6c3c935d38@172.16.239.11:30303
+      - --network-id=1337
+      - --rpc-http-enabled
+      - --rpc-http-api=ETH,NET,QBFT
+      - --host-allowlist=*
+      - --rpc-http-cors-origins=all
+      - --profile=ENTERPRISE
+    volumes:
+      - ./besu-qbft/genesis.json:/genesis.json
+      - ./besu-qbft/node2/data:/data
+    ports:
+      - '8546:8545'
+    depends_on:
+      - node1
+
+  node3:
+    <<: *besu-def
+    container_name: besu-node3
+    command:
+      - --data-path=/data
+      - --genesis-file=/genesis.json
+      - --bootnodes=enode://c69a99de7ea8ca0ed47b96a623ceb26126fc8b098ef6026c7639a9d4041c907f26c0d584e9f91dba438f5fb581b28a36c166915d5d27f30d1cdbee6c3c935d38@172.16.239.11:30303
+      - --network-id=1337
+      - --rpc-http-enabled
+      - --rpc-http-api=ETH,NET,QBFT
+      - --host-allowlist=*
+      - --rpc-http-cors-origins=all
+      - --profile=ENTERPRISE
+    volumes:
+      - ./besu-qbft/genesis.json:/genesis.json
+      - ./besu-qbft/node3/data:/data
+    ports:
+      - '8547:8545'
+    depends_on:
+      - node1
+
+  node4:
+    <<: *besu-def
+    container_name: besu-node4
+    command:
+      - --data-path=/data
+      - --genesis-file=/genesis.json
+      - --bootnodes=enode://c69a99de7ea8ca0ed47b96a623ceb26126fc8b098ef6026c7639a9d4041c907f26c0d584e9f91dba438f5fb581b28a36c166915d5d27f30d1cdbee6c3c935d38@172.16.239.11:30303
+      - --network-id=1337
+      - --rpc-http-enabled
+      - --rpc-http-api=ETH,NET,QBFT
+      - --host-allowlist=*
+      - --rpc-http-cors-origins=all
+      - --profile=ENTERPRISE
+    volumes:
+      - ./besu-qbft/genesis.json:/genesis.json
+      - ./besu-qbft/node4/data:/data
+    ports:
+      - '8548:8545'
+    depends_on:
+      - node1
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: veridegree-frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - veridegree-network
+    depends_on:
+      - node1
+      - ipfs
+
+networks:
+  veridegree-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.239.0/24
+
+volumes:
+  ipfs_data:

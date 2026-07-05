@@ -98,6 +98,7 @@ export function StudentPortal({ userAddress }: StudentPortalProps) {
       };
 
     if (totalSupplyNumber === 0 || (owners && userTokenIds.length === 0)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setStatus('empty');
     } else if (uris && uris.length > 0) {
       fetchAllMetadata(

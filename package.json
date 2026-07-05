@@ -1,0 +1,33 @@
+{
+  "name": "veridegree",
+  "version": "1.0.0",
+  "private": true,
+  "description": "VeriDegree",
+  "scripts": {
+    "commitlint": "commitlint --edit"
+  },
+  "release": {
+    "branches": [
+      "main",
+      "develop"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "footer-max-line-length": [0, "always"]
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.0.0",
+    "@commitlint/config-conventional": "^19.0.0",
+    "semantic-release": "^24.0.0"
+  }
+}
