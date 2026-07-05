@@ -20,7 +20,10 @@
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
-    ]
+    ],
+    "rules": {
+      "footer-max-line-length": [0, "always"]
+    }
   },
   "devDependencies": {
     "@commitlint/cli": "^19.0.0",
